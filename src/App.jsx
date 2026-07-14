@@ -147,17 +147,17 @@ export default function App() {
   }, [handleFlip, handleForget, handleRemember]);
 
   return (
-    <div className="min-h-screen bg-[#fcfaf7] text-gray-800 flex flex-col items-center py-8 px-4 font-sans">
-      <div className="w-full max-w-2xl mx-auto flex flex-col gap-6">
+    <div className="min-h-screen bg-[#fcfaf7] text-gray-800 flex flex-col items-center py-10 px-4 font-sans">
+      <div className="w-full max-w-2xl mx-auto flex flex-col gap-8">
         {/* Header */}
         <header className="flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold text-[#2d2d2d]">初中知识闪卡</h1>
-            <p className="text-sm text-gray-500 mt-1">Anki 风格高效复习</p>
+            <h1 className="text-3xl font-bold text-gray-900">初中知识闪卡</h1>
+            <p className="text-base text-gray-500 mt-1.5">Anki 风格高效复习</p>
           </div>
           <button
             onClick={handleReset}
-            className="px-3 py-1.5 text-sm text-gray-600 hover:text-[#2d2d2d] bg-white border border-gray-200 rounded-lg hover:shadow-sm transition-all duration-200"
+            className="px-5 py-2.5 text-sm font-medium text-gray-700 hover:text-gray-900 bg-white border border-gray-300 rounded-lg hover:shadow-md hover:border-gray-400 transition-all duration-200"
           >
             重新开始今日复习
           </button>
@@ -189,17 +189,34 @@ export default function App() {
           onFlip={handleFlip}
         />
 
-        {/* Action Buttons */}
+        {/* Action Buttons & Shortcuts Panel */}
         <ActionButtons
           isFlipped={isFlipped}
           onForget={handleForget}
           onRemember={handleRemember}
         />
 
-        {/* Footer */}
-        <footer className="text-center text-xs text-gray-400 pt-2">
-          快捷键：Space 翻牌 · ←/1 忘记 · →/2 记住
-        </footer>
+        {/* Bottom Shortcut Panel */}
+        <div className="w-full bg-white rounded-xl border border-gray-200 shadow-sm px-6 py-4">
+          <div className="flex justify-center items-center gap-8 text-sm">
+            <div className="flex items-center gap-2">
+              <kbd className="px-2.5 py-1 bg-gray-100 border border-gray-300 rounded-md text-xs font-mono font-bold text-gray-700">Space</kbd>
+              <span className="text-gray-600">翻牌</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <kbd className="px-2.5 py-1 bg-gray-100 border border-gray-300 rounded-md text-xs font-mono font-bold text-gray-700">←</kbd>
+              <span className="text-gray-400">/</span>
+              <kbd className="px-2.5 py-1 bg-gray-100 border border-gray-300 rounded-md text-xs font-mono font-bold text-gray-700">1</kbd>
+              <span className="text-gray-600">忘记</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <kbd className="px-2.5 py-1 bg-gray-100 border border-gray-300 rounded-md text-xs font-mono font-bold text-gray-700">→</kbd>
+              <span className="text-gray-400">/</span>
+              <kbd className="px-2.5 py-1 bg-gray-100 border border-gray-300 rounded-md text-xs font-mono font-bold text-gray-700">2</kbd>
+              <span className="text-gray-600">记住</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
