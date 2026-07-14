@@ -80,7 +80,16 @@ export default function App() {
     let filtered = initialCards;
     if (subject !== "全部") filtered = filtered.filter((c) => c.subject === subject);
     if (grade !== "全部") filtered = filtered.filter((c) => c.grade === grade);
-    return [...new Set(filtered.map((c) => c.chapter))].sort();
+    const unitOrder = { "一": 1, "二": 2, "三": 3, "四": 4 };
+    return [...new Set(filtered.map((c) => c.chapter))].sort((a, b) => {
+      const aUnit = a.match(/第([一二三四])单元/)?.[1];
+      const bUnit = b.match(/第([一二三四])单元/)?.[1];
+      const aNum = (aUnit ? unitOrder[aUnit] : 0) * 100;
+      const bNum = (bUnit ? unitOrder[bUnit] : 0) * 100;
+      const aLesson = parseInt(a.match(/第(\d+)课/)?.[1] || "0");
+      const bLesson = parseInt(b.match(/第(\d+)课/)?.[1] || "0");
+      return aNum + aLesson - (bNum + bLesson);
+    });
   }, [subject, grade]);
 
   useEffect(() => {
